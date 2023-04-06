@@ -4,6 +4,7 @@ import { FormTag } from 'ustaxes/core/irsForms/Form'
 import { Field } from 'ustaxes/core/pdfFiller'
 import F1040 from './F1040'
 import { sumFields } from 'ustaxes/core/irsForms/util'
+import ResidentialCleanEnergyCreditLimitWorksheet from './worksheets/ResidentialCleanEnergyCreditLimitWorksheet'
 
 const blankResidentialEnergyCredits = {
   solarElectric: 0,
@@ -20,12 +21,15 @@ export default class F5695 extends F1040Attachment {
   tag: FormTag = 'f5695'
   residentialEnergyCredits: ResidentialEnergyCredits
   sequenceIndex = 999
+  cleanEnergyCreditLimitWorksheet: ResidentialCleanEnergyCreditLimitWorksheet
   constructor(f1040: F1040) {
     super(f1040)
     this.residentialEnergyCredits = {
       ...blankResidentialEnergyCredits,
       ...(f1040.info.residentialEnergyCredits ?? {})
     }
+    this.cleanEnergyCreditLimitWorksheet =
+      new ResidentialCleanEnergyCreditLimitWorksheet(f1040)
   }
   // Part I
   l1 = (): number | number =>
@@ -60,13 +64,21 @@ export default class F5695 extends F1040Attachment {
   l12 = (): number => Number(this.residentialEnergyCredits.carryForwardCredits) // Credit carryforward from 2021. Enter the amount, if any, from your 2021 Form 5695, line 16
   l13 = (): number => this.l6b() + this.l11() + this.l12()
 
-  l14 = (): number | undefined => undefined // TODO: Limitation based on tax liability. Enter the amount from the Residential Clean Energy Credit Limit Worksheet (see instructions)
-  l15 = (): number => this.l13() //Math.min(this.l13(), this.l14())
+  // Limitation based on tax liability. Enter the amount from the Residential Clean Energy Credit Limit Worksheet (see instructions)
+  l14 = (): number => {
+    return this.cleanEnergyCreditLimitWorksheet.creditAdjustment()
+  }
 
-  l16 = (): number => 0 // Credit carryforward to 2023. If line 15 is less than line 13, subtract line 15 from line 13
-  //if (this.l15() < this.l13()) {
-  //  l16 = this.l13() - this.l15()
-  //}
+  l15 = (): number => Math.min(this.l13(), this.l14())
+
+  // Credit carryforward to 2023. If line 15 is less than line 13, subtract line 15 from line 13
+  l16 = (): number => {
+    if (this.l15() < this.l13()) {
+      return this.l13() - this.l15()
+    }
+    return 0
+  }
+
   l17a = (): number | undefined => undefined //Were the qualified energy efficiency improvements or residential energy property costs for your main home located in the United States? (see instructions)
 
   l30 = (): number | undefined => undefined
