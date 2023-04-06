@@ -51,26 +51,26 @@ export default class Schedule3 extends F1040Attachment {
 
   deductions = (): number => 0
   // Part I: Nonrefundable credits
-  l1 = (): number | undefined => undefined
-  l2 = (): number | undefined => undefined
-  l3 = (): number | undefined => this.f1040.f8863?.l19()
-  l4 = (): number | undefined => undefined
-  l5 = (): number | undefined => undefined
-  l6a = (): number | undefined => undefined // TODO: other credits
-  l6b = (): number | undefined => undefined // TODO: other credits
-  l6c = (): number | undefined => undefined // TODO: other credits
-  l6d = (): number | undefined => undefined // TODO: other credits
-  l6e = (): number | undefined => undefined // TODO: other credits
-  l6f = (): number | undefined => undefined // TODO: other credits
-  l6g = (): number | undefined => undefined // TODO: other credits
-  l6h = (): number | undefined => undefined // TODO: other credits
-  l6i = (): number | undefined => undefined // TODO: other credits
-  l6j = (): number | undefined => undefined // TODO: other credits
-  l6k = (): number | undefined => undefined // TODO: other credits
-  l6l = (): number | undefined => undefined // TODO: other credits
+  l1 = (): number | undefined => undefined // TODO: Foreign tax credit. Attach Form 1116 if required
+  l2 = (): number | undefined => undefined // TODO: Credit for child and dependent care expenses from Form 2441, line 11. Attach Form 2441
+  l3 = (): number | undefined => this.f1040.f8863?.l19() // Education credits from Form 8863, line 19
+  l4 = (): number | undefined => undefined // TODO: Retirement savings contributions credit. Attach Form 8880
+  l5 = (): number | undefined => this.f1040.f5695?.l15() // Residential energy credits. Attach Form 5695
+  l6a = (): number | undefined => undefined // TODO: General business credit. Attach Form 3800
+  l6b = (): number | undefined => undefined // TODO: Credit for prior year minimum tax. Attach Form 8801
+  l6c = (): number | undefined => undefined // TODO: Adoption credit. Attach Form 8839
+  l6d = (): number | undefined => undefined // TODO: Credit for the elderly or disabled. Attach Schedule R
+  l6e = (): number | undefined => undefined // TODO: Alternative motor vehicle credit. Attach Form 8910
+  l6f = (): number | undefined => undefined // TODO: Qualified plug-in motor vehicle credit. Attach Form 8936
+  l6g = (): number | undefined => undefined // TODO: Mortgage interest credit. Attach Form 8396
+  l6h = (): number | undefined => undefined // TODO: District of Columbia first-time homebuyer credit. Attach Form 8859
+  l6i = (): number | undefined => undefined // TODO: Qualified electric vehicle credit. Attach Form 8834
+  l6j = (): number | undefined => undefined // TODO: Alternative fuel vehicle refueling property credit. Attach Form 8911
+  l6k = (): number | undefined => undefined // TODO: Credit to holders of tax credit bonds. Attach Form 8912
+  l6l = (): number | undefined => undefined // TODO: Amount on Form 8978, line 14. See instructions
   l6zDesc1 = (): string | undefined => undefined
   l6zDesc2 = (): string | undefined => undefined
-  l6z = (): number | undefined => undefined // TODO: other credits
+  l6z = (): number | undefined => undefined // TODO: Other nonrefundable credits. List type and amount:
 
   l7 = (): number =>
     sumFields([
@@ -100,7 +100,7 @@ export default class Schedule3 extends F1040Attachment {
     ])
 
   // Part II: Other payments and refundable credits
-  l9 = (): number | undefined => this.f1040.f8962?.credit()
+  l9 = (): number | undefined => this.f1040.f8962?.credit() // Net premium tax credit. Attach Form 8962
 
   // TODO: Amount paid with extension for time to file
   l10 = (): number | undefined => undefined

@@ -18,6 +18,7 @@ export const blankState: Information = {
   f3921s: [],
   scheduleK1Form1065s: [],
   itemizedDeductions: undefined,
+  residentialEnergyCredits: undefined,
   stateResidencies: [],
   healthSavingsAccounts: [],
   credits: [],

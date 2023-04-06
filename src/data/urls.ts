@@ -30,7 +30,8 @@ const Urls = {
   },
   credits: {
     main: '/credits',
-    eic: '/credits/eic'
+    eic: '/credits/eic',
+    residentialEnergyCredits: '/credits/residentialenergycredits'
   },
   createPdf: '/createpdf',
   settings: '/settings',

@@ -73,6 +73,8 @@ export const propertyType =
 export const f1098e = fns.F1098e as ValidateFunction<types.F1098e>
 export const itemizedDeductions =
   fns.ItemizedDeductions as ValidateFunction<types.ItemizedDeductions>
+export const residentialEnergyCredits =
+  fns.ResidentialEnergyCredits as ValidateFunction<types.ResidentialEnergyCredits>
 export const responses = fns.Responses as ValidateFunction<types.Responses>
 export const stateResidency =
   fns.StateResidency as ValidateFunction<types.StateResidency>

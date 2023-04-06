@@ -31,6 +31,7 @@ import RealEstate from './income/RealEstate'
 import GettingStarted from './GettingStarted'
 import F1098eInfo from './deductions/F1098eInfo'
 import ItemizedDeductions from './deductions/ItemizedDeductions'
+import ResidentialEnergyCredits from './credits/ResidentialEnergyCredits'
 import Questions from './Questions'
 import HelpAndFeedback from './HelpAndFeedback'
 import UserSettings from './UserSettings'
@@ -152,6 +153,16 @@ export const drawerSections: Section[] = [
         'Itemized Deductions',
         Urls.deductions.itemized,
         <ItemizedDeductions />
+      )
+    ]
+  },
+  {
+    title: 'Credits',
+    items: [
+      item(
+        'Residential Energy Credits',
+        Urls.credits.residentialEnergyCredits,
+        <ResidentialEnergyCredits />
       )
     ]
   },

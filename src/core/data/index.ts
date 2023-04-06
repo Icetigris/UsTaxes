@@ -459,6 +459,17 @@ export interface ItemizedDeductions {
   charityOther: string | number
 }
 
+export interface ResidentialEnergyCredits {
+  solarElectric: string | number
+  solarWaterHeating: string | number
+  smallWindEnergy: string | number
+  geothermalHeatPump: string | number
+  biomassFuel: string | number
+  fuelCell: string | number
+  fuelCellKilowattCapacity: string | number
+  carryForwardCredits: string | number
+}
+
 export type State =
   | 'AL'
   | 'AK'
@@ -566,6 +577,7 @@ export interface Information<D = Date> {
   f3921s: F3921[]
   scheduleK1Form1065s: ScheduleK1Form1065[]
   itemizedDeductions: ItemizedDeductions | undefined
+  residentialEnergyCredits: ResidentialEnergyCredits | undefined
   refund?: Refund
   taxPayer: TaxPayer<D>
   questions: Responses

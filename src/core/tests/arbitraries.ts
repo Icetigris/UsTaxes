@@ -349,6 +349,39 @@ const itemizedDeductions: Arbitrary<types.ItemizedDeductions> = fc
     })
   )
 
+const residentialEnergyCredits: Arbitrary<types.ResidentialEnergyCredits> = fc
+  .tuple(
+    posCurrency(100000),
+    posCurrency(100000),
+    posCurrency(100000),
+    posCurrency(100000),
+    posCurrency(100000),
+    posCurrency(100000),
+    posCurrency(100000),
+    posCurrency(100000)
+  )
+  .map(
+    ([
+      solarElectric,
+      solarWaterHeating,
+      smallWindEnergy,
+      geothermalHeatPump,
+      biomassFuel,
+      fuelCell,
+      fuelCellKilowattCapacity,
+      carryForwardCredits
+    ]) => ({
+      solarElectric,
+      solarWaterHeating,
+      smallWindEnergy,
+      geothermalHeatPump,
+      biomassFuel,
+      fuelCell,
+      fuelCellKilowattCapacity,
+      carryForwardCredits
+    })
+  )
+
 const estTax: Arbitrary<types.EstimatedTaxPayments> = fc
   .tuple(maxWords(5), payment)
   .map(([label, payment]) => ({
@@ -664,6 +697,7 @@ export class Arbitraries {
         fc.array(f3921),
         fc.array(scheduleK1Form1065),
         itemizedDeductions,
+        residentialEnergyCredits,
         refund,
         this.taxPayer(),
         questions,
@@ -682,6 +716,7 @@ export class Arbitraries {
           f3921s,
           scheduleK1Form1065s,
           itemizedDeductions,
+          residentialEnergyCredits,
           refund,
           taxPayer,
           questions,
@@ -698,6 +733,7 @@ export class Arbitraries {
           f3921s,
           scheduleK1Form1065s,
           itemizedDeductions,
+          residentialEnergyCredits,
           refund,
           taxPayer,
           questions,

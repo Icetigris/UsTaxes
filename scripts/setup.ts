@@ -52,6 +52,7 @@ const moduleCode = standaloneCode(ajv, {
   PropertyType: '#/definitions/PropertyType',
   F1098e: '#/definitions/F1098e',
   ItemizedDeductions: '#/definitions/ItemizedDeductions',
+  ResidentialEnergyCredits: '#/definitions/ResidentialEnergyCredits',
   Responses: '#/definitions/Responses',
   StateResidency: '#/definitions/StateResidency',
   HealthSavingsAccount: '#/definitions/HealthSavingsAccountDateString',

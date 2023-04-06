@@ -17,6 +17,7 @@ import {
   Ira,
   Asset,
   ItemizedDeductions,
+  ResidentialEnergyCredits,
   F3921,
   ScheduleK1Form1065,
   TaxYear,
@@ -72,6 +73,7 @@ export enum ActionName {
   EDIT_1098e = 'EDIT_1098e',
   REMOVE_1098e = 'REMOVE_1098e',
   SET_ITEMIZED_DEDUCTIONS = 'SET_ITEMIZED_DEDUCTIONS',
+  SET_RESIDENTIAL_ENERGY_CREDITS = 'SET_RESIDENTIAL_ENERGY_CREDITS',
   ADD_HSA = 'ADD_HSA',
   EDIT_HSA = 'EDIT_HSA',
   REMOVE_HSA = 'REMOVE_HSA',
@@ -151,6 +153,10 @@ type SetItemizedDeductions = Save<
   typeof ActionName.SET_ITEMIZED_DEDUCTIONS,
   ItemizedDeductions
 >
+type SetResidentialEnergyCredits = Save<
+  typeof ActionName.SET_RESIDENTIAL_ENERGY_CREDITS,
+  ResidentialEnergyCredits
+>
 type SetInfo = Save<typeof ActionName.SET_INFO, InformationDateString>
 type SetActiveYear = Save<typeof ActionName.SET_ACTIVE_YEAR, TaxYear>
 type AddIRA = Save<typeof ActionName.ADD_IRA, Ira>
@@ -208,6 +214,7 @@ export type Actions =
   | Edit1098e
   | Remove1098e
   | SetItemizedDeductions
+  | SetResidentialEnergyCredits
   | AddHSA
   | EditHSA
   | RemoveHSA
@@ -437,6 +444,12 @@ export const setItemizedDeductions: ActionCreator<ItemizedDeductions> =
   makeActionCreator(
     ActionName.SET_ITEMIZED_DEDUCTIONS,
     validators.itemizedDeductions
+  )
+
+export const setResidentialEnergyCredits: ActionCreator<ResidentialEnergyCredits> =
+  makeActionCreator(
+    ActionName.SET_RESIDENTIAL_ENERGY_CREDITS,
+    validators.residentialEnergyCredits
   )
 
 // debugging purposes only, leaving unchecked.
